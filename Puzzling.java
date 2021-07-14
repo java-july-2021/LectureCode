@@ -10,7 +10,7 @@ public class Puzzling {
       alphabet.add(ch);
     }
 
-    int randomNum = r.nextInt(26);
+    int randomNum = r.nextInt(  n);
     System.out.println(alphabet);
     Collections.shuffle(alphabet);
     System.out.println(alphabet);
