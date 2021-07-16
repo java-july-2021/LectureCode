@@ -30,6 +30,10 @@ public class Pizza {
     numberOfPizzas++;
   }
 
+  public Pizza() {
+
+  }
+
   // Getters And Setters
   public String getName() {
     return this.name;
