@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title></title>
+<title>Your Favorite Color</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 Your favorite color is <c:out value="${color}"/>
 </body>
+<script src="/js/script.js"></script>
 </html>
