@@ -1,12 +1,16 @@
 package com.matthew.sports.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -32,6 +36,9 @@ public class Team {
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
+    
+    @OneToMany(mappedBy="team", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Player> players;
     
     @PrePersist
     protected void onCreate() {
@@ -106,6 +113,14 @@ public class Team {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
     
     

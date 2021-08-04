@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-<a href="/new">Add Team To Database</a>
+<a href="/new">Add Team To Database</a> | <a href="/player/new">Add Player</a>
 <table class="table table-dark">
 <thead>
 <th>ID</th>
@@ -26,7 +26,7 @@
 <c:forEach items="${allTeams}" var="team">
 <tr>
 <td>${team.id}</td>
-<td>${team.teamName}</td>
+<td><a href="/${team.id}">${team.teamName}</a></td>
 <td>${team.city}</td>
 <td>${team.sport}</td>
 <td><fmt:formatNumber type="number" value="${team.budget}" /></td>

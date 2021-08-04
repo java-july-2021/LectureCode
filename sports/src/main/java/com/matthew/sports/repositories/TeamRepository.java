@@ -10,4 +10,5 @@ import com.matthew.sports.models.Team;
 @Repository
 public interface TeamRepository extends CrudRepository<Team, Long>{
 	List<Team> findAll(); // SELECT * FROM teams;
+	
 }
