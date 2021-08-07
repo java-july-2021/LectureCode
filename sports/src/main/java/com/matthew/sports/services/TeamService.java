@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.matthew.sports.models.Team;
+import com.matthew.sports.models.User;
 import com.matthew.sports.repositories.TeamRepository;
 
 @Service
@@ -36,5 +37,15 @@ public class TeamService {
 		return this.tRepo.findById(id).orElse(null);
 	}
 	
-
+	public void likeTeam(Team team, User user) {
+		List<User> usersWhoLiked = team.getLikers();
+		usersWhoLiked.add(user);
+		this.tRepo.save(team);
+	}
+	
+	public void unlikeTeam(Team team, User user) {
+		List<User> usersWhoLiked = team.getLikers();
+		usersWhoLiked.remove(user);
+		this.tRepo.save(team);
+	}
 }

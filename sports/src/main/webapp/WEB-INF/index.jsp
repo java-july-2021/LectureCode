@@ -11,26 +11,42 @@
 </head>
 <body>
 <div class="container">
-<a href="/new">Add Team To Database</a> | <a href="/player/new">Add Player</a>
+<h1>Sports dot Com</h1>
+<p>Welcome ${user.firstName}</p>
+<a href="/new">Add Team To Database</a> | <a href="/player/new">Add Player</a> | <a href="/logout">Logout</a>
 <table class="table table-dark">
 <thead>
-<th>ID</th>
+<th>Action</th>
 <th>Team Name</th>
 <th>City</th>
 <th>Sport</th>
 <th>Budget</th>
 <th>is Active?</th>
+<th># of Likers</th>
 </thead>
 <tbody>
 
 <c:forEach items="${allTeams}" var="team">
 <tr>
-<td>${team.id}</td>
+<td>
+<c:choose>
+<c:when test="${team.likers.contains(user)}">
+<a href="/unlike/${team.id}">unLike</a>
+</c:when>
+<c:otherwise>
+<a href="/like/${team.id}">Like</a>
+</c:otherwise>
+</c:choose>
+</td>
+
+
+
 <td><a href="/${team.id}">${team.teamName}</a></td>
 <td>${team.city}</td>
 <td>${team.sport}</td>
 <td><fmt:formatNumber type="number" value="${team.budget}" /></td>
 <td>${team.isActive}</td>
+<td><p>${team.likers.size()}</p></td>
 </tr>
 </c:forEach>
 

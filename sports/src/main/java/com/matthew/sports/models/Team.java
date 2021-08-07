@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -37,8 +40,19 @@ public class Team {
     private Date createdAt;
     private Date updatedAt;
     
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "likes", 
+        joinColumns = @JoinColumn(name = "team_id"), 
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> likers;
+    
     @OneToMany(mappedBy="team", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private List<Player> players;
+    
+    @OneToMany(mappedBy="team", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Rate> rating;
     
     @PrePersist
     protected void onCreate() {
@@ -122,6 +136,23 @@ public class Team {
 	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}
-    
+
+	public List<User> getLikers() {
+		return likers;
+	}
+
+	public void setLikers(List<User> likers) {
+		this.likers = likers;
+	}
+
+	public List<Rate> getRating() {
+		return rating;
+	}
+
+	public void setRating(List<Rate> rating) {
+		this.rating = rating;
+	}
+
+
     
 }
